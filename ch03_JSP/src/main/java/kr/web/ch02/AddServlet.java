@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/add")
 public class AddServlet extends HttpServlet {
+	@Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
     	/*
     	 * [실습]
