@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>여행지 선택 버전 2</title>
+<script>
+	window.onload = function() {
+		const myForm = document.getElementById('myForm');
+
+		myForm.onsubmit = function() {
+			const checkname = document.getElementById("name").value;
+			if (checkname.trim() === "") {
+				alert("이름을 입력하세요!");
+				return false;
+			}
+
+			const checkboxes = document
+					.querySelectorAll('input[type="checkbox"]:checked');
+			if (checkboxes.length < 2) {
+				alert("여행지를 2개 이상 선택하세요.");
+				return false;
+			}
+			return true;
+		}
+	};
+</script>
+</head>
+<body>
+	<!-- 
+[실습]
+action : /ch03_JSP/travel
+method: post
+
+이름(name)-> input text, 여행지 선택(city) input checkbox
+여행지 
+서울 뉴욕 런던 파리
+
+
+ -->
+
+	<h3>여행지를 선택하세요!(2개 이상 선택)</h3>
+	<form action="/ch03_JSP/travel" method="post" id="myForm">
+		당신의 이름은? <input type="text" name="name" id="name"> <br> <input
+			type="checkbox" name="location" value="서울"> 서울 <input
+			type="checkbox" name="location" value="뉴욕"> 뉴욕 <input
+			type="checkbox" name="location" value="런던"> 런던 <input
+			type="checkbox" name="location" value="파리"> 파리 <input
+			type="submit" value="전송">
+	</form>
+
+	<script>
+		
+	</script>
+
+</body>
+</html>
