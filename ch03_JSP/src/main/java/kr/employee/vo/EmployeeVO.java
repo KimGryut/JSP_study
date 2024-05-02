@@ -1,23 +1,26 @@
-package kr.board.vo;
+package kr.employee.vo;
 
 import java.sql.Date;
 
-public class BoardVO {
-	//프로퍼티
+public class EmployeeVO {
+	// 프로퍼티
 	private int num;
-	private String title;
+	private String id;
 	private String name;
-	private String passwd;
-	private String content;
-	private String ip;
+	private String  passwd;
+	private int salary;
+	private String job;
 	private Date reg_date;
 	
+	// 비밀번호 체크
 	public boolean isCheckedPassword(String userPasswd) {
-		if(passwd.equals(userPasswd)) {
+		if(passwd.equals(userPasswd)) { // 비밀번호 일치
 			return true;
-		}
+		} 
+		// 비밀번호 불일치
 		return false;
 	}
+	
 	
 	public int getNum() {
 		return num;
@@ -25,11 +28,11 @@ public class BoardVO {
 	public void setNum(int num) {
 		this.num = num;
 	}
-	public String getTitle() {
-		return title;
+	public String getId() {
+		return id;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setId(String id) {
+		this.id = id;
 	}
 	public String getName() {
 		return name;
@@ -43,24 +46,24 @@ public class BoardVO {
 	public void setPasswd(String passwd) {
 		this.passwd = passwd;
 	}
-	public String getContent() {
-		return content;
+	public int getSalary() {
+		return salary;
 	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setSalary(int salary) {
+		this.salary = salary;
 	}
-	public String getIp() {
-		return ip;
+	public String getJob() {
+		return job;
 	}
-	public void setIp(String ip) {
-		this.ip = ip;
+	public void setJob(String job) {
+		this.job = job;
 	}
 	public Date getReg_date() {
 		return reg_date;
 	}
 	public void setReg_date(Date reg_date) {
 		this.reg_date = reg_date;
-	}
+	} 
+	
+	
 }
-
-

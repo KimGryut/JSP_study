@@ -23,9 +23,11 @@
 			// 내부적 작업을 할 때는 프라이머리키인 걸 사용하는 게 좋고, 노출된 것보다 member.getNum()같은 걸 사용하는 게 보안에 좋다
 			session.setAttribute("user_num", member.getNum()); 
 			session.setAttribute("user_id", id);
-			
+			session.setAttribute("user_name", member.getName()); // 사용자 이름을 세션에 저장
+
 			// main.jsp로 리다이렉트
 			response.sendRedirect("main.jsp");
+
 		} else{ // 불일치
 %>
 		<script type="text/javascript">

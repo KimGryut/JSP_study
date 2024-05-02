@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	Integer user_num = (Integer)session.getAttribute("user_num");
-	if(user_num==null){ // 로그인이 되지 않음
+	Integer employee_num = (Integer)session.getAttribute("employee_num");
+	if(employee_num==null){ // 로그인이 되지 않음
 		response.sendRedirect("loginForm.jsp");
 	} else{ // 로그인 된 경우
 %>
@@ -11,7 +11,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원 탈퇴</title>
+<title>사원 정보 삭제</title>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/style.css" type="text/css">
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
@@ -52,30 +52,26 @@
 <body>
 	
 	<div class= "page-main">
-		<h1>회원 탈퇴</h1>
-		<form id	="delete_form" action="deleteUser.jsp" method="post">
+		<h1>사원 정보 삭제</h1>
+		<form id	="delete_form" action="deleteEmployee.jsp" method="post">
 			<ul>
+				<li><label for="id">아이디</label> <input type="text" name="id"
+					id="id" maxlength="12"></li>
+				<li><label for="passwd">비밀번호</label> <input type="password"
+					name="passwd" id="passwd" maxlength="12"></li>
 				<li>
-					<label for="id">아이디</label>
-					<input type="text" name="id" id="id" maxlength="12">
-				</li>
-				<li>
-					<label for="passwd">비밀번호</label>
-					<input type="password" name="passwd" id="passwd" maxlength="12">
-				</li>
-				<li>
-					<label for="cpasswd">비밀번호 확인</label>
-					<input type="password" id="cpasswd" maxlength="12">
+					<label for="cpasswd">비밀번호 확인</label> 
+					<input type="password" name="cpasswd" id="cpasswd" maxlength="12">
 				</li>
 			</ul>
 			<div class="align-center">
-				<input type="submit" value="회원탈퇴">
+				<input type="submit" value="사원정보삭제">
 				<input type="button" value = "홈으로" onclick="location.href='main.jsp'">
 			</div>
 		</form>
 	</div>
 </body>
-</html>			
+</html>	
 <%
 	}
 %>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입</title>
+<title>사원등록</title>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/style.css" type="text/css">
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery-3.7.1.min.js"></script>
 
@@ -13,8 +13,8 @@
 		// 아이디 중복 체크 결과 -> 0: 아이디 중복 체크 미실시 (아이디 중복), 1: 아이디 미중복
 		let count = 0;
 		
-		// 공백 입력 불가하게 하는 것
-		 $('#id').on('input', function() {
+		// (아이디) 입력 불가하게 하는 것
+		$('#id').on('input', function() {
 		        var input = $(this).val();
 		        if (input.includes(' ')) {
 		            alert('공백을 입력할 수 없습니다.');
@@ -30,6 +30,16 @@
 		            // [ㄱ-ㅎㅏ-ㅣ가-힣] : 한글 자음, 모음, 음절 패턴
 		            alert('특수 문자나 한글을 입력할 수 없습니다.');
 		            $(this).val(input.replace(/[^\w\s]/g, '').replace(/[ㄱ-ㅎㅏ-ㅣ가-힣]/g, '')); // 특수 문자나 한글 제거
+		        }
+		    });
+		
+		 // (비밀번호) 입력 불가하게 하는 것
+		 $('#passwd').on('input', function() {
+		        var input = $(this).val();
+		        // -> 공백 입력 불가
+		        if (input.includes(' ')) {
+		            alert('공백을 입력할 수 없습니다.');
+		            $(this).val(input.replace(/\s/g, '')); // 공백 제거
 		        }
 		    });
 		
@@ -98,8 +108,8 @@
 </head>
 <body>
 	<div class="page-main">
-		<h1>회원가입</h1>
-		<form action="registerUser.jsp" method="post" id="register_form">
+		<h1>사원등록</h1>
+		<form action="register.jsp" method="post" id="register_form">
 			<ul>
 				<li>
 					<label for="id">아이디</label>
@@ -116,12 +126,12 @@
 					<input type="password" name="passwd" id="passwd" class="input-check" maxlength="12">
 				</li>
 				<li>
-					<label for="email">이메일</label>
-					<input type="email" name="email" id="email" class="input-check" maxlength="50">
+					<label for="salary">임금</label>
+					<input type="number" name="salary" id="salary" class="input-check" maxlength="50">
 				</li>
 				<li>
-					<label for="phone">휴대폰 번호</label>
-					<input type="text" name="phone" id="phone"maxlength="15">
+					<label for="job">업무</label>
+					<input type="text" name="job" id="job"maxlength="15">
 				</li>
 			</ul>
 			<div class = "align-center">
