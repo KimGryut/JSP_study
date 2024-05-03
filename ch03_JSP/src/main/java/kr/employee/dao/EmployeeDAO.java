@@ -175,5 +175,28 @@ public class EmployeeDAO {
 	    	DBUtil.executeClose(null, pstmt, conn);
 	    }
 	}
+	
+	// 사원 이름 찾기
+    public String findEmployeeName(int employeeNum) throws Exception {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String employeeName = null;
+        try {
+            conn = DBUtil.getConnection();
+            String sql = "SELECT name FROM semployee WHERE num=?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, employeeNum);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                employeeName = rs.getString("name");
+            }
+        } catch (Exception e) {
+            throw new Exception(e);
+        } finally {
+            DBUtil.executeClose(rs, pstmt, conn);
+        }
+        return employeeName;
+    }
 }
 

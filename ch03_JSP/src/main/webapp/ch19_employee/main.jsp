@@ -15,6 +15,7 @@
 <div class="page-main">
 	<h1>사원 관리 메인</h1>
 	<div class="align-right">
+		<a href="list.jsp">사원 이야기</a>
 	<%
 		if(employee_id==null){ // 로그인 실패
 	%>
