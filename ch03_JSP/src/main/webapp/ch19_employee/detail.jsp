@@ -34,6 +34,13 @@
 %>
 <!DOCTYPE html>
 <html>
+<style>
+    form {
+        border: none;
+        margin: 0;
+        padding: 0;
+    }
+</style>
 <head>
 <meta charset="UTF-8">
 <title>게시판 글 상세</title>
@@ -42,6 +49,7 @@
 <body>
 <div class="page-main">
     <h1>게시판 글 상세</h1>
+    
     <ul>
         <li>글번호 : <%= vo != null ? vo.getSnum() : "" %> </li>
         <li>제목 : <%= vo != null ? vo.getTitle() : "" %> </li>
@@ -64,6 +72,18 @@
         <input type="button" value="목록"
             onclick="location.href='list.jsp'">  
     </div>
+    <% if(employee_num!=0){%>
+	<h4>댓글 쓰기</h4>
+	<form action="insertMention.jsp" method="post" style="width: 100%;">
+		<input type="hidden" name="snum" value="<%= snum %>">
+	    <textarea  name="content" id="content" rows="10" cols="100" style="width: 100%;"></textarea>
+	    <br>
+	    <input type="submit" value="댓글 등록">
+	</form>
+	<% } else {%>
+		<h4>댓글 확인 기능은 로그인이 필요</h4>
+	<%} %>
 </div>
+
 </body>
 </html>

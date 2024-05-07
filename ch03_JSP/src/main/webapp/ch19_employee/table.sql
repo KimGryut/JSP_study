@@ -24,3 +24,15 @@ create table story(
 );
 
 create sequence story_seq;
+
+-- 댓글 기능
+create table mention (
+	mnum number primary key,
+	id varchar2(12) references semployee(id),
+	snum number references story(snum),
+	content varchar2(200) not null,
+	reg_date date default sysdate not null
+);
+
+
+create sequence mention_seq;
