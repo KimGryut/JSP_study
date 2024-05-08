@@ -21,26 +21,38 @@ public class DispatcherServlet extends HttpServlet {
 		requestPro(request, response);
 	}
 	
-	
-	
+
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
 	public void requestPro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		String message = request.getParameter("message");
-		String result = null;
-		if(message==null || message.equals("")) {
-			result = "메시지가 없음!!";
-		} else if(message.equals("name")) {
-			result="홍길동";
-		} else if(message.equals("base")) {
-			result="기본 호출";
-		} else {
-			result="잘못된 호출";
+		Action com = null;
+		String view = null; // jsp 경로
+		
+		String command = request.getRequestURI();
+		System.out.println("가공 전: " + command); //컨텍스트 경로부터 읽어옴 -> /CH03_JSP 부터
+		if(command.indexOf(request.getContextPath())==0){ // 컨텍스트 경로가 맨앞에 있는가? 
+			command = command.substring(request.getContextPath().length()); // 컨텍스트 경로가 끝나는 지점부터 마지막까지만 남기고 자르겠다 -> 즉, 컨텍스트 경로 삭제
+			System.out.println("가공 후: " + command); // 컨텍스트 경로가 잘리고 나머지가 남았다는 걸 확인할 수 있음
+		} 
+		
+		if(command.equals("/list.do")) {
+			com = new ListAction();
+		} else if(command.equals("/write.do")) {
+			com = new WriteAction();
+		} else if(command.equals("/detail.do")) {
+			com = new DetailAction();
+		} else if(command.equals("/update.do")) {
+			com = new UpdateAction();
+		} else if(command.equals("/delete.do")) {
+			com = new DeleteAction();
 		}
-		
-									// 속성명    속성값
-		request.setAttribute("result", result);
-		
+
+		try {
+			view = com.execute(request, response);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 		// forward 방식으로 view (jsp) 호출
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/views/messageView.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
 		dispatcher.forward(request, response);
 		
 		
